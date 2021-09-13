@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean class="org.example.bean.Organization" id="organization"
+          c:title="${title}" c:slogan="${slogan}"
+          c:numberOfEmployee="${numberOfEmployee}"
+          c:yearOfFound="${yearOfFound}">
+
+
+
+
+
+    </bean>
+
+    <bean class="org.example.bean.Employee" id="employee">
+        <property name="organization" value="#{organization}"/>
+        <!--<property name="firstname" value="#{organization.numberOfEmployee + 10}"/>-->
+        <!-- Arithmetic -->
+        <!-- <property name="age" value="#{20 * 2}"/> -->
+        <!-- Relational -->
+        <!-- <property name="retired" value="#{70 gt 60}"/>-->
+        <!-- Logical -->
+        <!-- <property name="retired" value="#{1  == 1}"/> -->
+        <!-- using classes -->
+        <!-- <property name="age" value="#{T(java.lang.Math).random() * 100}"/>-->
+
+        <!-- using systemProperties -->
+        <property name="firstname" value="#{systemProperties['user.name']}"/>
+    </bean>
+
+    <context:property-placeholder location="another-organization.properties" />
+
+</beans>

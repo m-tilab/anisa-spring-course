@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
+        <property name="username" value="${jdbc.mysql.username}"/>
+        <property name="password" value="${jdbc.mysql.password}"/>
+        <property name="driverClassName" value="${jdbc.mysql.driver}" />
+        <property name="url" value="${jdbc.mysql.url}"></property>
+    </bean>
+
+    <context:component-scan base-package="org.example.dao, org.example.service"/>
+
+    <context:property-placeholder location="classpath:datasource.properties"></context:property-placeholder>
+
+</beans>

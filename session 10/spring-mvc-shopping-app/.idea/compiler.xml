@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring-mvc-model-attribute" />
+        <module name="spring-mvc-shopping-app" />
+        <module name="simple-spring-mvc-annotation-demo" />
+        <module name="spring-mvc-logging" />
+        <module name="simple-spring-mvc-jdbc" />
+        <module name="spring-mvc-jdbc-jndi" />
+        <module name="spring-mvc-interceptor" />
+        <module name="spring-mvc-shopping-card" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

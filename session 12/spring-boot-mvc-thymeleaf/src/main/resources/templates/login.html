@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="~{fragments/head :: headFragment}">-->
+<head id="head">
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<h1>Welcome to New Login Page</h1>
+
+<form th:action="@{/login}" method="post" th:object="${user}">
+<!--<form th:action="@{__${T(com.example.util.Mappings).LOGIN}__}" method="post" th:object="${user}">-->
+
+    <div th:if="${error != null}">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div class="container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" id="username"
+               th:field="*{username}" required>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" id="password"
+               th:field="*{password}" required>
+
+        <button type="submit">Login</button>
+    </div>
+</form>
+
+<footer id="footer">
+    Footer is here
+</footer>
+</body>
+</html>

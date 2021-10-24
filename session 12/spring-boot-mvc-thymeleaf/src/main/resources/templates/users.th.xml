@@ -1,0 +1,16 @@
+<thlogic>
+    <attr sel="html" th:dir="#{lang.dir}" />
+    <attr sel="#head" th:replace="~{fragments/head :: headFragment}" />
+    <attr sel="#footer" th:replace="~{fragments/footer :: footer}" />
+    <attr sel="#page-title" th:text="#{${pageTitle}}" />
+    <attr sel="#users-table">
+        <attr sel="#firstname-header" th:text="#{firstname}"/>
+        <attr sel="#lastname-header" th:text="#{lastname}"/>
+        <attr sel="#username-header" th:text="#{username}"/>
+        <attr sel="/tbody/tr" th:each="user : ${users}">
+            <attr sel="td.firstname" th:text="${user.firstname}"/>
+            <attr sel="td.lastname" th:text="${user.lastname}"/>
+            <attr sel="td.username" th:text="${user.username}"/>
+        </attr>
+    </attr>
+</thlogic>

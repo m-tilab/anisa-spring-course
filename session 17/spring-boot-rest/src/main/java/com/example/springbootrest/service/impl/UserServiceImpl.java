@@ -1,11 +1,16 @@
 package com.example.springbootrest.service.impl;
 
+import com.example.springbootrest.exception.ErrorMessages;
+import com.example.springbootrest.exception.UserServiceException;
 import com.example.springbootrest.model.dto.UserDTO;
 import com.example.springbootrest.model.entity.UserEntity;
 import com.example.springbootrest.repository.UserRepository;
 import com.example.springbootrest.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,10 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -100,7 +102,7 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> optionalUserEntity = userRepository.findByUserId(userDTO.getUserId());
 
         if (optionalUserEntity.isEmpty())
-            throw new RuntimeException("userId " + userDTO.getUserId() + " not found");
+            throw new UserServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 
         Optional<UserEntity> optionalExistUserEntity = userRepository.findByEmail(userDTO.getEmail());
 
@@ -115,5 +117,26 @@ public class UserServiceImpl implements UserService {
         userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
 
         userRepository.save(userEntity);
+    }
+
+    @Override
+    public Page<UserDTO> getUsers(int page, int limit) {
+
+        List<UserDTO> userDTOs = new ArrayList<>();
+
+        PageRequest pageRequest = PageRequest.of(page, limit);
+
+        Page<UserEntity> userEntityPages = userRepository.findAll(pageRequest);
+        List<UserEntity> userEntities = userEntityPages.getContent();
+
+        userEntities.forEach(userEntity -> {
+
+            UserDTO userDTO = new UserDTO();
+            BeanUtils.copyProperties(userEntity, userDTO);
+
+            userDTOs.add(userDTO);
+        });
+
+        return new PageImpl<>(userDTOs, pageRequest, userEntityPages.getTotalElements());
     }
 }

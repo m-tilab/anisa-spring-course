@@ -1,0 +1,20 @@
+const loginUrl = pm.globals.get("baseUrl") + "user/login";
+console.log(loginUrl)
+pm.sendRequest({
+    url: loginUrl,
+    method: 'POST',
+    header: {
+        'content-type': 'application/json'
+    },
+    body: {
+        mode: 'raw',
+        raw: JSON.stringify({"username": "m.tilab",
+	                         "password": "123456" })
+        
+    }
+}, function (err, res) {
+
+    const Authorization = res.headers.find(h => h.key == 'Authorization');
+    console.log(Authorization)
+    pm.environment.set("auth",  Authorization.value);
+});

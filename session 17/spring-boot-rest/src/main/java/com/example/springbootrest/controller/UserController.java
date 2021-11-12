@@ -8,12 +8,17 @@ import com.example.springbootrest.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -69,5 +74,28 @@ public class UserController {
     public String deleteUser() {
 
         return "delUser called";
+    }
+
+    @GetMapping
+    public Page<UserDetailsResponseModel> getUsers(@RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "10") int limit) {
+
+        var userDetails = new ArrayList<UserDetailsResponseModel>();
+
+        Page<UserDTO> pageUsers = userService.getUsers(page, limit);
+
+        List<UserDTO> userDTOs = pageUsers.getContent();
+
+        userDTOs.stream().forEach(userDTO -> {
+            UserDetailsResponseModel responseModel = new UserDetailsResponseModel();
+
+            BeanUtils.copyProperties(userDTO, responseModel);
+
+            userDetails.add(responseModel);
+        });
+
+        PageRequest pageRequest = PageRequest.of(page, limit);
+
+        return new PageImpl<>(userDetails,pageRequest, pageUsers.getTotalElements());
     }
 }

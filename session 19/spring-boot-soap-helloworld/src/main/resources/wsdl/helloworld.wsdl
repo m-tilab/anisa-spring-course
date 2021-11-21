@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://example.com" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="http://example.com">
+
+    <wsdl:types>
+        <xs:schema targetNamespace="http://example.com">
+            <xs:element name="inputSOATest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="test" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="outputSOATest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="result" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+
+
+    <!--Define input and output parameters -->
+    <wsdl:message name="inputSOATest">
+        <wsdl:part name="in" element="tns:inputSOATest" />
+    </wsdl:message>
+    <wsdl:message name="outputSOATest">
+        <wsdl:part name="out" element="tns:outputSOATest" />
+    </wsdl:message>
+
+    <!--Define port definition -->
+    <wsdl:portType name="SOATestEndpoint">
+        <wsdl:operation name="SOATest">
+            <wsdl:input message="tns:inputSOATest" />
+            <wsdl:output message="tns:outputSOATest" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!--Bind Soap operation and service -->
+    <wsdl:binding name="SOATestBinding" type="tns:SOATestEndpoint">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="SOATest">
+            <soap:operation soapAction="http://example.com"
+                            style="document" />
+            <wsdl:input>
+                <soap:body parts="in" use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="out" use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!--Define service -->
+    <wsdl:service name="SOATestEndpointService">
+        <wsdl:port name="SOATestEndpoint" binding="tns:SOATestBinding">
+            <soap:address location="http://localhost:8080/example/ws/helloWorldExample" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,5 @@
+<thlogic>
+    <attr sel="#head" th:fragment="headFragment"/>
+    <attr sel="#title" th:text="${pageTitle}" />
+    <attr sel="#css-main-file" th:href="@{/css/bootstrap.min.css}" />
+</thlogic>

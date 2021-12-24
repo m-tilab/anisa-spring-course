@@ -7,6 +7,7 @@ import com.example.springbootrest.model.entity.RoleEntity;
 import com.example.springbootrest.model.entity.UserEntity;
 import com.example.springbootrest.repository.RoleRepository;
 import com.example.springbootrest.repository.UserRepository;
+import com.example.springbootrest.service.KafkaProducerConfig;
 import com.example.springbootrest.service.UserService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -34,6 +35,8 @@ public class UserServiceImpl implements UserService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    private KafkaProducerConfig kafkaProducer;
+
     @Override
     public UserDTO createCustomerUser(UserDTO userDTO) {
 
@@ -58,6 +61,8 @@ public class UserServiceImpl implements UserService {
         userEntity = userRepository.save(userEntity);
 
         userDTO = modelMapper.map(userEntity, UserDTO.class);
+
+        kafkaProducer.sendMessage("welcome to Spring Boot Rest");
 
         return userDTO;
     }

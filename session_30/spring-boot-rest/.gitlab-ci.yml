@@ -1,0 +1,24 @@
+services:
+  - docker:19.03.7-dind
+
+stages:
+  - build jar
+  - build and push docker image
+
+build:
+  image: maven:3.6.3-jdk-11-slim
+  stage: build jar
+  script:
+    - mvn clean install -DskipTests
+
+  artifacts:
+    paths:
+      - target/*.jar
+
+docker build:
+  image: docker:stable
+  stage: build and push docker image
+  script:
+    - docker build -t $DOCKER_REPO .
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io
+    - docker push $DOCKER_REPO

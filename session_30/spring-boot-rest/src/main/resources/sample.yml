@@ -1,0 +1,25 @@
+# key value pair
+name: "mehdi"
+lastname: "tilab"
+age: 34
+
+# list/array
+friuts:
+  - banana
+  - orange
+  - apple
+
+# Dictionary/Map
+Banana:
+  Calories: 100 g
+  Fat: 0.6 g
+  Carb: 30 g
+
+# Mixed
+Friuts:
+  - banana
+    Calories: 100 g
+    Fat: 0.6 g
+    Carb: 30 g
+  - orange
+  - apple

@@ -26,3 +26,5 @@ http://localhost:8765/currency-exchange/from/USD/to/IRR
 http://localhost:8765/currency-conversion-feign/from/USD/to/IRR/quantity/20
 http://localhost:8765/currency-conversion-new/from/USD/to/IRR/quantity/20
 
+# Zipkin
+http://localhost:9411

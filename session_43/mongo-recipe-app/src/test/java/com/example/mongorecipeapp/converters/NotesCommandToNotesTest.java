@@ -2,8 +2,8 @@ package com.example.mongorecipeapp.converters;
 
 import com.example.mongorecipeapp.commands.NotesCommand;
 import com.example.mongorecipeapp.domain.Notes;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +13,7 @@ public class NotesCommandToNotesTest {
     public static final String RECIPE_NOTES = "Notes";
     NotesCommandToNotes converter;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         converter = new NotesCommandToNotes();
 

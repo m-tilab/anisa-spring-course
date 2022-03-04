@@ -4,16 +4,14 @@ import com.example.mongorecipeapp.commands.IngredientCommand;
 import com.example.mongorecipeapp.domain.Ingredient;
 import com.example.mongorecipeapp.domain.Recipe;
 import com.example.mongorecipeapp.domain.UnitOfMeasure;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by jt on 6/21/17.
- */
+
 public class IngredientToIngredientCommandTest {
 
     public static final Recipe RECIPE = new Recipe();
@@ -25,7 +23,7 @@ public class IngredientToIngredientCommandTest {
 
     IngredientToIngredientCommand converter;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         converter = new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand());
     }

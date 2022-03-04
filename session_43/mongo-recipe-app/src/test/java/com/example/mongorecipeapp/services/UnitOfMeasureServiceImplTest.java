@@ -4,15 +4,15 @@ import com.example.mongorecipeapp.commands.UnitOfMeasureCommand;
 import com.example.mongorecipeapp.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import com.example.mongorecipeapp.domain.UnitOfMeasure;
 import com.example.mongorecipeapp.repositories.UnitOfMeasureRepository;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class UnitOfMeasureServiceImplTest {
@@ -23,7 +23,7 @@ public class UnitOfMeasureServiceImplTest {
     @Mock
     UnitOfMeasureRepository unitOfMeasureRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 

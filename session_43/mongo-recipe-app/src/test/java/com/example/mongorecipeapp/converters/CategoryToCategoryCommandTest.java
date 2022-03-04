@@ -2,21 +2,19 @@ package com.example.mongorecipeapp.converters;
 
 import com.example.mongorecipeapp.commands.CategoryCommand;
 import com.example.mongorecipeapp.domain.Category;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by jt on 6/21/17.
- */
+
 public class CategoryToCategoryCommandTest {
 
     public static final String ID_VALUE = "1";
     public static final String DESCRIPTION = "descript";
     CategoryToCategoryCommand convter;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         convter = new CategoryToCategoryCommand();
     }

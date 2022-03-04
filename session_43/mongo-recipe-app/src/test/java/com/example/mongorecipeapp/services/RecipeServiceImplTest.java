@@ -7,8 +7,8 @@ import com.example.mongorecipeapp.converters.RecipeToRecipeCommand;
 import com.example.mongorecipeapp.domain.Recipe;
 import com.example.mongorecipeapp.exceptions.NotFoundException;
 import com.example.mongorecipeapp.repositories.RecipeRepository;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -16,13 +16,11 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
-/**
- * Created by jt on 6/17/17.
- */
+
 public class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
@@ -36,7 +34,7 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeCommandToRecipe recipeCommandToRecipe;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 

@@ -6,8 +6,8 @@ import com.example.mongorecipeapp.commands.NotesCommand;
 import com.example.mongorecipeapp.commands.RecipeCommand;
 import com.example.mongorecipeapp.domain.Difficulty;
 import com.example.mongorecipeapp.domain.Recipe;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -30,7 +30,7 @@ public class RecipeCommandToRecipeTest {
     RecipeCommandToRecipe converter;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         converter = new RecipeCommandToRecipe(new CategoryCommandToCategory(),
                 new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure()),

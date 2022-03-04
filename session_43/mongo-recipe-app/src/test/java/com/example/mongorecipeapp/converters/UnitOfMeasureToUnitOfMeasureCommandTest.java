@@ -2,14 +2,12 @@ package com.example.mongorecipeapp.converters;
 
 import com.example.mongorecipeapp.commands.UnitOfMeasureCommand;
 import com.example.mongorecipeapp.domain.UnitOfMeasure;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by jt on 6/21/17.
- */
+
 public class UnitOfMeasureToUnitOfMeasureCommandTest {
 
     public static final String DESCRIPTION = "description";
@@ -17,7 +15,7 @@ public class UnitOfMeasureToUnitOfMeasureCommandTest {
 
     UnitOfMeasureToUnitOfMeasureCommand converter;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         converter = new UnitOfMeasureToUnitOfMeasureCommand();
     }

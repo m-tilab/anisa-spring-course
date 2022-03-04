@@ -1,0 +1,4 @@
+type Query {
+
+    bankAccount(id: ID): BankAccount
+}

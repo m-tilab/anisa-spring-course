@@ -2,8 +2,8 @@ package com.example.mongorecipeapp.converters;
 
 import com.example.mongorecipeapp.commands.RecipeCommand;
 import com.example.mongorecipeapp.domain.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -25,7 +25,7 @@ public class RecipeToRecipeCommandTest {
     public static final String NOTES_ID = "9";
     RecipeToRecipeCommand converter;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         converter = new RecipeToRecipeCommand(
                 new CategoryToCategoryCommand(),
